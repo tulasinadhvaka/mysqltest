@@ -1,4 +1,19 @@
 ---
-- include: mysql_install.yml
-- include: create_db.yml
+- name: enable remote machine access the mysql
+  shell: "iptables -I INPUT -p tcp -s {{remote_host}} --dport 3306 -j ACCEPT" 
+
+- name: Save iptalbes rules
+  shell: iptables-save
+ 
+- name: make mysql accible from outside
+  shell: sed -i "s/skip-external-locking/#skip-external-locking/g" /etc/mysql/my.cnf
+
+- name: change bind address 
+  shell: sed -i "s/bind-address/#bind-address/g" /etc/mysql/my.cnf
+
+- name: restart mysql server
+  service: name=mysql state=restarted 
+
+#- include: mysql_install.yml
+#- include: create_db.yml
 

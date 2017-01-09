@@ -1,3 +1,0 @@
-----
-- name: create test file
-  file: path="/tmp/test.txt" state="present" mode="0755"

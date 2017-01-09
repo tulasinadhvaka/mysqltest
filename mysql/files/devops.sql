@@ -17,6 +17,10 @@
 
 
 CREATE DATABASE devops;
+CREATE USER 'test'@'%' IDENTIFIED BY 'test';
+GRANT ALL PRIVILEGES ON *.* TO 'test'@'%';	
+FLUSH PRIVILEGES;
+
 USE devops;
 --
 -- Table structure for table `test`
