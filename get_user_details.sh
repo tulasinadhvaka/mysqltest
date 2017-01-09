@@ -12,7 +12,7 @@ dbname=devops
 file=$1
 rm outputs/result
 
-echo -n Password: 
+echo -n Enter mysql Password for test user: 
 read -s pass
 while read line
  do
