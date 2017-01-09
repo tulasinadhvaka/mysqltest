@@ -7,14 +7,18 @@ fi
 
 
 host=192.168.111.163
-user=test
 dbname=devops
 file=$1
-rm outputs/result
+res="outputs/result"
+if [ -f $res ];then
+   rm outputs/result
+fi
 
-echo -n Enter mysql Password for test user: 
-read -s pass
 while read line
  do
-     mysql -u$user -p$pass -h$host $dbname -e "select * from test where user_id=$line;"   >>outputs/result
+     mysql -h$host $dbname -e "select * from test where user_id=$line;"   >>outputs/result
  done < inputs/user_ids
+if [ `echo $?` -eq 0 ];then
+
+     echo "Check the result in outputs/result"
+fi 
