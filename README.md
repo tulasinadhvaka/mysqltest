@@ -13,8 +13,6 @@ Requirements
   *Virtual Box*
 
 
-```
-
 How to Execute
 ---------------
 
