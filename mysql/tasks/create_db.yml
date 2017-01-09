@@ -1,0 +1,6 @@
+---
+- name: copy database file to remote machine
+  copy: src="devops.sql" dest="/tmp"
+
+- name: Restore database
+  shell: mysql -u root -p{{password}} < /tmp/devops.sql

@@ -1,23 +1,4 @@
 ---
-- name: Update cache
-  apt: update_cache=true
+- include: mysql_install.yml
+- include: create_db.yml
 
-- name: Mysql installation
-  apt: pkg={{item}} state=installed
-  with_items:
-      - bundler
-      - mysql-server-core-5.5
-      - mysql-client-core-5.5
-      - libmysqlclient-dev
-      - python-mysqldb
-      - mysql-server
-      - mysql-client
-      - build-essential
-
-- name: Set root password
-  mysql_user: name=root password={{password}} host="{{item}}" priv=*.*:ALL,GRANT state=present
-  with_items:
-      - "{{ansible_hostname}}"
-      - 127.0.0.1
-      - ::1
-      - localhost
